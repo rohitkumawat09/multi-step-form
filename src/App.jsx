@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+ import Header from "./Header";
 
 function App() {
   const [step, setStep] = useState(0);
@@ -16,7 +17,7 @@ function App() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({prev,
+    setFormData((prev) => ({...prev,
       [name]: value
     }));
   };
@@ -133,11 +134,12 @@ function App() {
 
   return (
     <>
+      {<Header /> }
       {inputSteps[step]}
 
       <div className='buttons'>
-        <button onClick={Back}>Back</button>
-        <button onClick={Next}>Next</button>
+        <button onClick={Back} disabled={step === 0}>Back</button>
+        <button onClick={Next}disabled={step === inputSteps.length - 1}>Next</button>
         <button onClick={submit}>Submit</button>
       </div>
     </>
